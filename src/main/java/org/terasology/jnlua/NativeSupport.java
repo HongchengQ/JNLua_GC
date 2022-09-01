@@ -107,6 +107,8 @@ public final class NativeSupport {
                     platformTypeName = "amd64";
                     break;
                 }
+                case "arm64":
+                case "arm64e":
                 case "aarch64": {
                     platformTypeName = "aarch64";
                     break;
@@ -115,6 +117,7 @@ public final class NativeSupport {
                     platformTypeName = "arm";
                     break;
                 }
+                case "i686":
                 case "x86": {
                     platformTypeName = "x86";
                     break;
