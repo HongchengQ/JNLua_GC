@@ -25,6 +25,7 @@ package org.terasology.jnlua;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,9 +55,9 @@ public class DefaultConverter implements Converter {
 	 */
 	private static final Map<Class<?>, Integer> BOOLEAN_DISTANCE_MAP = new HashMap<Class<?>, Integer>();
 	static {
-		BOOLEAN_DISTANCE_MAP.put(Boolean.class, new Integer(1));
-		BOOLEAN_DISTANCE_MAP.put(Boolean.TYPE, new Integer(1));
-		BOOLEAN_DISTANCE_MAP.put(Object.class, new Integer(2));
+		BOOLEAN_DISTANCE_MAP.put(Boolean.class, Integer.valueOf(1));
+		BOOLEAN_DISTANCE_MAP.put(Boolean.TYPE, Integer.valueOf(1));
+		BOOLEAN_DISTANCE_MAP.put(Object.class, Integer.valueOf(2));
 	}
 
 	/**
@@ -64,26 +65,26 @@ public class DefaultConverter implements Converter {
 	 */
 	private static final Map<Class<?>, Integer> NUMBER_DISTANCE_MAP = new HashMap<Class<?>, Integer>();
 	static {
-		NUMBER_DISTANCE_MAP.put(Byte.class, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Byte.TYPE, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Short.class, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Short.TYPE, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Integer.class, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Integer.TYPE, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Long.class, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Long.TYPE, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Float.class, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Float.TYPE, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Double.class, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Double.TYPE, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(BigInteger.class, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(BigDecimal.class, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Character.class, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Character.TYPE, new Integer(1));
-		NUMBER_DISTANCE_MAP.put(Object.class, new Integer(2));
-		NUMBER_DISTANCE_MAP.put(String.class, new Integer(3));
+		NUMBER_DISTANCE_MAP.put(Byte.class, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Byte.TYPE, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Short.class, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Short.TYPE, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Integer.class, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Integer.TYPE, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Long.class, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Long.TYPE, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Float.class, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Float.TYPE, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Double.class, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Double.TYPE, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(BigInteger.class, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(BigDecimal.class, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Character.class, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Character.TYPE, Integer.valueOf(1));
+		NUMBER_DISTANCE_MAP.put(Object.class, Integer.valueOf(2));
+		NUMBER_DISTANCE_MAP.put(String.class, Integer.valueOf(3));
 		if (!RAW_BYTE_ARRAY) {
-			NUMBER_DISTANCE_MAP.put(byte[].class, new Integer(3));
+			NUMBER_DISTANCE_MAP.put(byte[].class, Integer.valueOf(3));
 		}
 	}
 
@@ -92,27 +93,27 @@ public class DefaultConverter implements Converter {
 	 */
 	private static final Map<Class<?>, Integer> STRING_DISTANCE_MAP = new HashMap<Class<?>, Integer>();
 	static {
-		STRING_DISTANCE_MAP.put(String.class, new Integer(1));
+		STRING_DISTANCE_MAP.put(String.class, Integer.valueOf(1));
 		if (!RAW_BYTE_ARRAY) {
-			STRING_DISTANCE_MAP.put(byte[].class, new Integer(1));
+			STRING_DISTANCE_MAP.put(byte[].class, Integer.valueOf(1));
 		}
-		STRING_DISTANCE_MAP.put(Object.class, new Integer(2));
-		STRING_DISTANCE_MAP.put(Byte.class, new Integer(3));
-		STRING_DISTANCE_MAP.put(Byte.TYPE, new Integer(3));
-		STRING_DISTANCE_MAP.put(Short.class, new Integer(3));
-		STRING_DISTANCE_MAP.put(Short.TYPE, new Integer(3));
-		STRING_DISTANCE_MAP.put(Integer.class, new Integer(3));
-		STRING_DISTANCE_MAP.put(Integer.TYPE, new Integer(3));
-		STRING_DISTANCE_MAP.put(Long.class, new Integer(3));
-		STRING_DISTANCE_MAP.put(Long.TYPE, new Integer(3));
-		STRING_DISTANCE_MAP.put(Float.class, new Integer(3));
-		STRING_DISTANCE_MAP.put(Float.TYPE, new Integer(3));
-		STRING_DISTANCE_MAP.put(Double.class, new Integer(3));
-		STRING_DISTANCE_MAP.put(Double.TYPE, new Integer(3));
-		STRING_DISTANCE_MAP.put(BigInteger.class, new Integer(3));
-		STRING_DISTANCE_MAP.put(BigDecimal.class, new Integer(3));
-		STRING_DISTANCE_MAP.put(Character.class, new Integer(3));
-		STRING_DISTANCE_MAP.put(Character.TYPE, new Integer(3));
+		STRING_DISTANCE_MAP.put(Object.class, Integer.valueOf(2));
+		STRING_DISTANCE_MAP.put(Byte.class, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Byte.TYPE, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Short.class, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Short.TYPE, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Integer.class, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Integer.TYPE, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Long.class, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Long.TYPE, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Float.class, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Float.TYPE, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Double.class, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Double.TYPE, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(BigInteger.class, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(BigDecimal.class, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Character.class, Integer.valueOf(3));
+		STRING_DISTANCE_MAP.put(Character.TYPE, Integer.valueOf(3));
 	}
 
 	/**
@@ -120,8 +121,8 @@ public class DefaultConverter implements Converter {
 	 */
 	private static final Map<Class<?>, Integer> FUNCTION_DISTANCE_MAP = new HashMap<Class<?>, Integer>();
 	static {
-		FUNCTION_DISTANCE_MAP.put(JavaFunction.class, new Integer(1));
-		FUNCTION_DISTANCE_MAP.put(Object.class, new Integer(2));
+		FUNCTION_DISTANCE_MAP.put(JavaFunction.class, Integer.valueOf(1));
+		FUNCTION_DISTANCE_MAP.put(Object.class, Integer.valueOf(2));
 	}
 
 	/**
@@ -152,7 +153,7 @@ public class DefaultConverter implements Converter {
 		LUA_VALUE_CONVERTERS.put(Double.class, doubleConverter);
 		LUA_VALUE_CONVERTERS.put(Double.TYPE, doubleConverter);
 		LuaValueConverter<BigInteger> bigIntegerConverter = (luaState, index) -> BigDecimal.valueOf(luaState.toNumber(index))
-				.setScale(0, BigDecimal.ROUND_HALF_EVEN).toBigInteger();
+				.setScale(0, RoundingMode.HALF_EVEN).toBigInteger();
 		LUA_VALUE_CONVERTERS.put(BigInteger.class, bigIntegerConverter);
 		LuaValueConverter<BigDecimal> bigDecimalConverter = (luaState, index) -> BigDecimal.valueOf(luaState.toNumber(index));
 		LUA_VALUE_CONVERTERS.put(BigDecimal.class, bigDecimalConverter);
