@@ -32,7 +32,7 @@
 #endif
 
 /* ---- Definitions ---- */
-#define JNLUA_DEFAULT_DUMP_BUFFER_SIZE 1024 * 512
+#define JNLUA_DEFAULT_DUMP_BUFFER_SIZE 1024 * 128
 #define JNLUA_APIVERSION 3
 #define JNLUA_JNIVERSION JNI_VERSION_1_6
 #define JNLUA_JAVASTATE "jnlua.JavaState"
